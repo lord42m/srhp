@@ -66,7 +66,7 @@
       z-index: 1;
     }
 
-    /* 🔗 Top-left links */
+    /* 🔗 Top-left icon links */
     .side-links {
       position: fixed;
       top: 20px;
@@ -78,19 +78,24 @@
     }
 
     .side-links a {
+      width: 38px;
+      height: 38px;
       border: 1px solid var(--muted);
-      padding: 8px 16px;
-      border-radius: 18px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
       color: var(--muted);
       text-decoration: none;
-      font-size: 13px;
+      background: rgba(0,0,0,0.25);
       transition: 0.3s;
-      background: rgba(0,0,0,0.2);
     }
 
     .side-links a:hover {
       border-color: var(--accent);
       color: var(--accent);
+      transform: scale(1.05);
     }
 
     .container {
@@ -168,7 +173,6 @@
       color: #000;
     }
 
-    /* 🔘 Work buttons row */
     .work-links {
       margin-top: 20px;
       display: flex;
@@ -192,7 +196,6 @@
       color: var(--accent);
     }
 
-    /* 💌 Modal */
     .modal {
       position: fixed;
       inset: 0;
@@ -214,18 +217,15 @@
 </head>
 <body>
 
-  <!-- Stars -->
   <div class="stars" id="stars"></div>
-
-  <!-- Glow -->
   <div class="glow"></div>
 
-  <!-- Top-left vertical links -->
+  <!-- Top-left icons -->
   <div class="side-links">
-    <a href="https://youtube.com" target="_blank">YouTube</a>
-    <a href="https://spotify.com" target="_blank">Spotify</a>
-    <a href="https://netflix.com" target="_blank">Netflix</a>
-    <a href="https://lord42m.github.io/srks/#" target="_blank">Your Page</a>
+    <a href="https://youtube.com" target="_blank" title="YouTube">▶️</a>
+    <a href="https://spotify.com" target="_blank" title="Spotify">🎵</a>
+    <a href="https://netflix.com" target="_blank" title="Netflix">🎬</a>
+    <a href="https://lord42m.github.io/srks/#" target="_blank" title="Your Page">💖</a>
   </div>
 
   <div class="container">
@@ -242,7 +242,6 @@
 
     <button onclick="showNote()">A little note for you 💌</button>
 
-    <!-- Work / App buttons -->
     <div class="work-links">
       <a href="https://sso.unej.ac.id/cas/login?service=https%3A%2F%2Fsiakad.unej.ac.id%2Fsite%2Flogincas" target="_blank">SISTER</a>
       <a href="https://apps.tatamulia.co.id:7443/spk/index.php/login" target="_blank">E-SPK</a>
@@ -252,7 +251,6 @@
     </div>
   </div>
 
-  <!-- Modal -->
   <div class="modal" id="noteModal">
     <div class="modal-content">
       <p>No matter how busy life gets, you are always my favorite thought ❤️</p>
@@ -261,7 +259,6 @@
   </div>
 
   <script>
-    /* Stars */
     const stars = document.getElementById("stars");
     for (let i = 0; i < 45; i++) {
       const s = document.createElement("div");
@@ -272,7 +269,6 @@
       stars.appendChild(s);
     }
 
-    /* Typing greeting */
     const hour = new Date().getHours();
     const base =
       hour < 12 ? "Good Morning" :
@@ -289,7 +285,6 @@
     }
     typeGreeting();
 
-    /* Time & Date */
     function updateTime() {
       const now = new Date();
       time.textContent = now.toLocaleTimeString([], {hour:"2-digit", minute:"2-digit"});
@@ -300,7 +295,6 @@
     setInterval(updateTime, 1000);
     updateTime();
 
-    /* Daily quote */
     const today = new Date().toDateString();
     const savedDate = localStorage.getItem("quoteDate");
     const savedQuote = localStorage.getItem("quoteText");
