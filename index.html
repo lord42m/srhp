@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Homepage ❤️</title>
+  <title>For You ❤️</title>
 
   <style>
     :root {
@@ -23,9 +23,6 @@
       background: var(--bg);
       font-family: "Inter", "Segoe UI", sans-serif;
       color: var(--text);
-      display: flex;
-      align-items: center;
-      justify-content: center;
       overflow: hidden;
     }
 
@@ -52,7 +49,7 @@
 
     /* ✨ Glow */
     .glow {
-      position: absolute;
+      position: fixed;
       width: 600px;
       height: 600px;
       background: radial-gradient(
@@ -63,21 +60,49 @@
         transparent 70%
       );
       filter: blur(90px);
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
       z-index: 1;
+    }
+
+    /* 🔗 Top-left links */
+    .side-links {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      z-index: 3;
+    }
+
+    .side-links a {
+      border: 1px solid var(--muted);
+      padding: 8px 16px;
+      border-radius: 18px;
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 13px;
+      transition: 0.3s;
+      background: rgba(0,0,0,0.2);
+    }
+
+    .side-links a:hover {
+      border-color: var(--accent);
+      color: var(--accent);
     }
 
     .container {
       position: relative;
       z-index: 2;
-      max-width: 700px;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
       text-align: center;
       padding: 20px;
-      animation: fadeIn 1s ease;
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(10px); }
-      to { opacity: 1; transform: translateY(0); }
     }
 
     h1 {
@@ -104,6 +129,7 @@
 
     .search-box {
       max-width: 520px;
+      width: 100%;
       margin: 25px auto;
     }
 
@@ -134,6 +160,7 @@
       padding: 10px 22px;
       border-radius: 25px;
       cursor: pointer;
+      transition: 0.3s;
     }
 
     button:hover {
@@ -141,32 +168,31 @@
       color: #000;
     }
 
-    .links {
-      margin-top: 30px;
+    /* 🔘 Work buttons row */
+    .work-links {
+      margin-top: 20px;
       display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 14px;
+      gap: 12px;
+      flex-wrap: wrap;
+      justify-content: center;
     }
 
-    .links-row {
-      display: flex;
-      gap: 16px;
-    }
-
-    .links a {
+    .work-links a {
       border: 1px solid var(--muted);
       padding: 8px 18px;
       border-radius: 20px;
       color: var(--muted);
       text-decoration: none;
+      font-size: 13px;
+      transition: 0.3s;
     }
 
-    .links a:hover {
+    .work-links a:hover {
       border-color: var(--accent);
       color: var(--accent);
     }
 
+    /* 💌 Modal */
     .modal {
       position: fixed;
       inset: 0;
@@ -188,8 +214,19 @@
 </head>
 <body>
 
+  <!-- Stars -->
   <div class="stars" id="stars"></div>
+
+  <!-- Glow -->
   <div class="glow"></div>
+
+  <!-- Top-left vertical links -->
+  <div class="side-links">
+    <a href="https://youtube.com" target="_blank">YouTube</a>
+    <a href="https://spotify.com" target="_blank">Spotify</a>
+    <a href="https://netflix.com" target="_blank">Netflix</a>
+    <a href="https://lord42m.github.io/srks/#" target="_blank">Your Page</a>
+  </div>
 
   <div class="container">
     <h1 id="greeting"></h1>
@@ -205,19 +242,17 @@
 
     <button onclick="showNote()">A little note for you 💌</button>
 
-    <div class="links">
-      <div class="links-row">
-        <a href="https://youtube.com" target="_blank">YouTube</a>
-        <a href="https://spotify.com" target="_blank">Spotify</a>
-        <a href="https://netflix.com" target="_blank">Netflix</a>
-      </div>
-
-      <a href="https://lord42m.github.io/srks/#" target="_blank">
-        Your Page
-      </a>
+    <!-- Work / App buttons -->
+    <div class="work-links">
+      <a href="https://sso.unej.ac.id/cas/login?service=https%3A%2F%2Fsiakad.unej.ac.id%2Fsite%2Flogincas" target="_blank">SISTER</a>
+      <a href="https://apps.tatamulia.co.id:7443/spk/index.php/login" target="_blank">E-SPK</a>
+      <a href="https://login.microsoftonline.com/2affd32c-4aa4-48d4-aecb-b4b5f8394d1d/oauth2/authorize?client_id=996def3d-b36c-4153-8607-a6fd3c01b89f&redirect_uri=https%3A%2F%2Fbusinesscentral.dynamics.com%2Fremote-sign-in&response_type=code&scope=openid%20profile&response_mode=form_post" target="_blank">Dynamic</a>
+      <a href="https://mail.tatamulia.co.id/#1" target="_blank">E-Mail</a>
+      <a href="http://192.168.9.35/index.php/Base/show_all_aplikasi/" target="_blank">TATA</a>
     </div>
   </div>
 
+  <!-- Modal -->
   <div class="modal" id="noteModal">
     <div class="modal-content">
       <p>No matter how busy life gets, you are always my favorite thought ❤️</p>
@@ -226,7 +261,7 @@
   </div>
 
   <script>
-    /* ⭐ Stars */
+    /* Stars */
     const stars = document.getElementById("stars");
     for (let i = 0; i < 45; i++) {
       const s = document.createElement("div");
@@ -237,9 +272,13 @@
       stars.appendChild(s);
     }
 
-    /* ⌨️ Typing Greeting */
+    /* Typing greeting */
     const hour = new Date().getHours();
-    let base = hour < 12 ? "Good Morning" : hour < 18 ? "Good Afternoon" : "Good Evening";
+    const base =
+      hour < 12 ? "Good Morning" :
+      hour < 18 ? "Good Afternoon" :
+      "Good Evening";
+
     const greetingText = `${base}, <span>My Love</span>`;
     const greetingEl = document.getElementById("greeting");
     let i = 0;
@@ -250,7 +289,7 @@
     }
     typeGreeting();
 
-    /* ⏰ Time & Date */
+    /* Time & Date */
     function updateTime() {
       const now = new Date();
       time.textContent = now.toLocaleTimeString([], {hour:"2-digit", minute:"2-digit"});
@@ -261,7 +300,7 @@
     setInterval(updateTime, 1000);
     updateTime();
 
-    /* 💬 Daily Quote (cached) */
+    /* Daily quote */
     const today = new Date().toDateString();
     const savedDate = localStorage.getItem("quoteDate");
     const savedQuote = localStorage.getItem("quoteText");
@@ -282,7 +321,6 @@
         });
     }
 
-    /* 💌 Modal */
     function showNote() {
       noteModal.style.display = "flex";
     }
